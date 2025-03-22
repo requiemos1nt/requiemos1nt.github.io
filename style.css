@@ -36,16 +36,25 @@ body, html {
 }
 
 .gallery-container {
-    width: 100%;
-    max-width: 100%;
-    height: 60%;
-    aspect-ratio: 1;
+    width: 90vw; /* 90% ширины экрана */
+    max-width: 75vh; /* Ограничение, чтобы не растягивалась на больших экранах */
+    height: auto; /* Автоматическая высота */
+    max-height: 80vh; /* Не больше 80% высоты экрана */
+    aspect-ratio: 4 / 5; /* Сохраняет исходное соотношение */
+    
     position: relative;
     overflow: hidden;
     border-radius: 20px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     background: rgba(255, 255, 255, 0.2);
     z-index: 1;
+}
+
+.gallery-container img {
+    width: 100%; /* Растягиваем по ширине контейнера */
+    height: 100%; /* Заполняем высоту */
+    object-fit: contain; /* Подгоняет изображение без обрезки */
+    border-radius: 20px;
 }
 
 .gallery {
@@ -94,5 +103,5 @@ body, html {
 }
 
 .active-dot {
-    background: rgb(255, 255, 255);
+    background: white;
 }
