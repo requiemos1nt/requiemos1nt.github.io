@@ -36,9 +36,9 @@ body, html {
 }
 
 .gallery-container {
-    width: 80%;
-    max-width: 650px;
-    height: 800px;
+    width: 70vw;
+    max-width: 64vh;
+    height: 80vh;
     aspect-ratio: 1;
     position: relative;
     overflow: hidden;
