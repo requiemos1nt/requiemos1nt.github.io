@@ -37,7 +37,8 @@ body, html {
 
 .gallery-container {
     width: 80%;
-    max-width: 400px;
+    max-width: 650px;
+    height: 800px;
     aspect-ratio: 1;
     position: relative;
     overflow: hidden;
@@ -80,12 +81,14 @@ body, html {
     bottom: 20px;
     display: flex;
     gap: 10px;
+    background: rgba(255, 255, 255,);
+    border-radius: 50%;
 }
 
 .dot {
     width: 10px;
     height: 10px;
-    background: rgba(255, 255, 255, 0.4);
+    background: white;
     border-radius: 50%;
     transition: background 0.3s;
 }
