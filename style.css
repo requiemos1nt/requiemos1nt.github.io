@@ -87,21 +87,24 @@ body, html {
 /* === Две точки-индикаторы === */
 .dots-container {
     position: absolute;
-    bottom: 20px;
+    bottom: 15px; /* Чуть ближе к краю */
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
-    gap: 10px;
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 50%;
+    gap: 6px; /* Меньший отступ между точками */
+    background: none; /* Убираем фон */
 }
 
 .dot {
-    width: 10px;
-    height: 10px;
-    background: grey;
+    width: 6px; /* Делаем более компактными */
+    height: 6px;
+    background: rgba(255, 255, 255, 0.5); /* Полупрозрачный цвет */
     border-radius: 50%;
-    transition: background 0.7s;
+    transition: width 0.3s, background 0.3s, border-radius 0.3s;
 }
 
 .active-dot {
-    background: white;
+    width: 16px; /* Активная точка больше и овальная */
+    border-radius: 8px; /* Овальная форма */
+    background: rgb(226, 226, 226); /* Чёткий цвет для активной */
 }
