@@ -1,0 +1,71 @@
+/* Контейнер для всего экрана */
+.screen-container {
+    width: 100vw; /* Полная ширина экрана */
+    height: 100vh; /* Полная высота экрана */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Чтобы ничего не выходило за пределы */
+}
+
+/* Видео на фоне */
+#background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(5px);
+    z-index: -1;
+}
+
+/* Контейнер с текстом */
+.text-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: left; /* Текст слева, чтобы выглядело удобнее */
+    z-index: 1;
+    padding: 5vw; /* Отступы пропорциональны ширине экрана */
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 3vw; /* Радиус углов зависит от ширины экрана */
+    max-width: 80vw; /* Максимальная ширина контейнера */
+    width: 70vw; /* Ширина контейнера */
+    max-height: 80vh; /* Максимальная высота */
+    overflow-y: auto; /* Добавляем вертикальную прокрутку */
+}
+
+/* Заголовок */
+.text-container h1 {
+    font-size: 4vw; /* Размер шрифта зависит от ширины экрана */
+    margin-bottom: 2vw; /* Расстояние от заголовка до текста */
+    font-weight: bold;
+}
+
+/* Абзац с текстом */
+.text-container p {
+    font-size: 2.5vw; /* Размер шрифта пропорционален ширине экрана */
+    line-height: 1.6;
+    margin-top: 1.5vw; /* Добавляем небольшой отступ сверху */
+}
+
+/* Уровень вложенности для списков */
+.text-container ul,
+.text-container ol {
+    margin-left: 3vw; /* Отступ для списков */
+    font-size: 2.5vw; /* Размер шрифта для списков */
+}
+
+/* Ссылки */
+.text-container a {
+    color: #fd0000;
+    text-decoration: none;
+}
+
+.text-container a:hover {
+    text-decoration: underline;
+}
