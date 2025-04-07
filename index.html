@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Background with Music</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="style.css"> <!-- Путь к CSS файлу -->
     <style>
         /* Видео на фоне */
         #background-video {
@@ -58,7 +58,7 @@
 <body>
     <!-- Видео на фоне -->
     <video autoplay loop id="background-video" muted>
-        <source src="{{ url_for('video', filename='tiktok_video.mp4') }}" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+        <source src="tiktok_video.mp4" type="video/mp4"> <!-- Путь к видео -->
         Ваш браузер не поддерживает видео.
     </video>
 
