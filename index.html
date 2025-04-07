@@ -13,7 +13,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: blur(8px); /* Добавляем размытие */
+            filter: blur(11px); /* Добавляем размытие */
             z-index: -1; /* Видео будет на заднем плане */
         }
 
@@ -23,34 +23,112 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            color: rgb(255, 255, 255);
+            color: rgb(5, 5, 5);
             text-align: center;
             z-index: 1; /* Текст будет поверх видео */
             padding: 20px;
             max-width: 80%;
-            background-color: rgba(78, 78, 78, 0.5); /* Прозрачный фон для текста */
+            background-color: rgba(0, 0, 0, 0.5); /* Прозрачный фон для текста */
             border-radius: 10px;
         }
 
-        /* Кнопка регулировки громкости */
-        #volume-control {
+        /* Контейнер для кнопки и ползунка */
+        .controls-container {
             position: fixed;
-            bottom: 20px;
+            bottom: 30px;
             right: 20px;
-            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
-        /* Кнопка включения звука */
-        #unmute-button {
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            z-index: 2;
-            padding: 10px 20px;
-            background-color: rgba(255, 255, 255, 0.7);
-            border: none;
+        /* Стиль для слайдера громкости (по умолчанию скрыт) */
+        .volume-slider {
+            -webkit-appearance: none;
+            width: 150px;
+            height: 10px;
+            border-radius: 5px;
+            background: linear-gradient(90deg, rgba(150, 150, 150, 1) 0%, rgba(200, 200, 200, 1) 100%);
+            outline: none;
             cursor: pointer;
-            font-size: 16px;
+            transition: background 0.3s ease;
+            display: none; /* Скрыт до нажатия на кнопку */
+        }
+
+        .volume-slider:hover {
+            background: linear-gradient(90deg, rgba(160, 160, 160, 1) 0%, rgba(220, 220, 220, 1) 100%);
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(150, 150, 150, 0.9);
+            border: 2px solid #8c8c8c;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .volume-slider::-webkit-slider-thumb:hover {
+            background: rgba(150, 150, 150, 1);
+        }
+
+        /* Стиль для кнопки включения звука */
+        .unmute-button {
+            padding: 15px 30px;
+            font-size: 18px;
+            background: linear-gradient(135deg, #6e7f70, #4c6b61);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .unmute-button:hover {
+            background: linear-gradient(135deg, #4c6b61, #6e7f70);
+            transform: scale(1.05);
+        }
+
+        .unmute-button:active {
+            background: linear-gradient(135deg, #3e5548, #5a705b);
+            transform: scale(1);
+        }
+
+        /* Стиль для ссылок */
+        a {
+            color: #5c5c5c;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            font-size: 2em;
+        }
+
+        h2 {
+            font-size: 1.5em;
+        }
+
+        li {
+            font-size: 1.2em;
+        }
+
+        /* Оверлей для затемнения фона */
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Прозрачный чёрный фон */
+            z-index: -1; /* Под контентом */
         }
     </style>
 </head>
@@ -61,17 +139,51 @@
         Ваш браузер не поддерживает видео.
     </video>
 
+    <!-- Оверлей для затемнения фона -->
+    <div id="overlay"></div>
+
     <!-- Контейнер с текстом -->
     <div class="text-container">
         <h1>Профессиональные услуги OSINT-разведки</h1>
-        <div id="markdown-content"></div>
+        <p>Я – специалист в сфере OSINT-разведки с глубоким пониманием методов поиска информации и анализа данных. Помогу вам получить нужные сведения о человеке будь то ФИО, номер телефона или паспортные данные быстро, безопасно и легально. В случае не выполнения условий с моей стороны сделаю возврат средств.</p>
+
+        <h2>Услуги и цены:</h2>
+        <ul>
+            <li><strong>Информационное досье – 15$</strong>  
+            Базовая сводка данных, собранных из открытых источников. Данные не проходят глубокую проверку, но дают общее представление о человеке.</li>
+            <p>
+            <li><strong>Оперативное досье – 20$</strong>  
+            Расширенный сбор информации с проверкой на достоверность. Вы получаете актуальные и подтвержденные данные.</li>
+            </p>
+            <p>
+            <li><strong>Разведывательное досье – 40$</strong>  
+            Глубокий анализ личности с применением продвинутых OSINT-методов. Используются техники социального профилирования, цифрового следа и анализа активности в интернете.</li>
+        </ul>
+
+        <h2>Почему стоит выбрать меня?</h2>
+        <ul>
+            <li><strong>Опыт и профессионализм</strong> – работаю в OSINT-аналитике, использую только проверенные методы.</li>
+            <li><strong>Конфиденциальность</strong> – гарантирую полную анонимность работы.</li>
+            <li><strong>Легальность</strong> – только данные из открытых источников, без нарушения законов.</li>
+        </ul>
+
+        <p><strong>Готов помочь вам получить нужную информацию! Свяжитесь для уточнения деталей.</strong></p>
+
+        <h3><p>По всем вопросам: 
+            <a href="https://t.me/PEKBNEM" target="_blank">@PEKBNEM</a> / 
+            <a href="https://t.me/requiem_osint" target="_blank">@requiem_osint</a>
+        </p>
+        </h3>
     </div>
 
-    <!-- Кнопка регулировки громкости -->
-    <input type="range" id="volume-control" min="0" max="1" step="0.01" value="1" onchange="setVolume(this.value)">
-    
-    <!-- Кнопка включения звука -->
-    <button id="unmute-button" onclick="unmuteVideo()">Включить звук</button>
+    <!-- Контейнер с кнопкой и ползунком громкости -->
+    <div class="controls-container">
+        <!-- Кнопка включения звука -->
+        <button id="unmute-button" onclick="unmuteVideo()" class="unmute-button">Включить звук</button>
+
+        <!-- Слайдер громкости (скрыт до нажатия кнопки) -->
+        <input type="range" id="volume-control" min="0" max="1" step="0.01" value="1" onchange="setVolume(this.value)" class="volume-slider">
+    </div>
 
     <script>
         // Функция для регулировки громкости
@@ -80,34 +192,22 @@
             video.volume = value; // Устанавливаем громкость видео
         }
 
-        // Функция для включения звука
+        // Функция для включения звука и отображения слайдера
         function unmuteVideo() {
             var video = document.getElementById('background-video');
             video.muted = false; // Убираем mute
             document.getElementById('unmute-button').style.display = 'none'; // Прячем кнопку
+            document.querySelector('.volume-slider').style.display = 'block'; // Показываем слайдер
         }
 
-        // Функция для загрузки и отображения Markdown
-        async function loadMarkdownContent() {
-            try {
-                const response = await fetch('text.txt'); // Подключаем текстовый файл
-                const text = await response.text();
-
-                // Преобразуем текст из Markdown в HTML
-                const htmlContent = marked(text);
-
-                // Вставляем HTML в контейнер
-                document.getElementById('markdown-content').innerHTML = htmlContent;
-            } catch (error) {
-                console.error('Ошибка при загрузке Markdown:', error);
-            }
+        // Функция для добавления затемнения фона
+        function dimBackground(opacity) {
+            var overlay = document.getElementById('overlay');
+            overlay.style.backgroundColor = 'rgba(0, 0, 0, ' + opacity + ')'; // Настройка степени затемнения
         }
 
-        // Загружаем Markdown при загрузке страницы
-        window.onload = loadMarkdownContent;
+        // Пример использования функции dimBackground
+        dimBackground(0.5); // Установим степень затемнения на 50%
     </script>
-
-    <!-- Подключаем библиотеку для конвертации Markdown в HTML -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </body>
 </html>
