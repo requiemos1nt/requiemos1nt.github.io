@@ -22,8 +22,8 @@ def index():
 
 @app.route('/video/<filename>')
 def video(filename):
-    return send_from_directory(os.path.join(app.root_path, 'static', 'video'), filename)
-
+    # Путь к видео
+    return send_from_directory(VIDEO_FOLDER, filename)
 
 if __name__ == '__main__':
     app.run(debug=True)
