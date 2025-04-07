@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Background with Music</title>
-    <link rel="stylesheet" href="style.css"> <!-- Путь к CSS файлу -->
     <style>
         /* Видео на фоне */
         #background-video {
@@ -58,16 +57,14 @@
 <body>
     <!-- Видео на фоне -->
     <video autoplay loop id="background-video" muted>
-        <source src="tiktok_video.mp4" type="video/mp4"> <!-- Путь к видео -->
+        <source src="video/tiktok_video.mp4" type="video/mp4">
         Ваш браузер не поддерживает видео.
     </video>
 
     <!-- Контейнер с текстом -->
     <div class="text-container">
         <h1>Профессиональные услуги OSINT-разведки</h1>
-        <div class="markdown-content">
-            {{ text_content|safe }}
-        </div>
+        <div id="markdown-content"></div>
     </div>
 
     <!-- Кнопка регулировки громкости -->
@@ -89,6 +86,28 @@
             video.muted = false; // Убираем mute
             document.getElementById('unmute-button').style.display = 'none'; // Прячем кнопку
         }
+
+        // Функция для загрузки и отображения Markdown
+        async function loadMarkdownContent() {
+            try {
+                const response = await fetch('text.txt'); // Подключаем текстовый файл
+                const text = await response.text();
+
+                // Преобразуем текст из Markdown в HTML
+                const htmlContent = marked(text);
+
+                // Вставляем HTML в контейнер
+                document.getElementById('markdown-content').innerHTML = htmlContent;
+            } catch (error) {
+                console.error('Ошибка при загрузке Markdown:', error);
+            }
+        }
+
+        // Загружаем Markdown при загрузке страницы
+        window.onload = loadMarkdownContent;
     </script>
+
+    <!-- Подключаем библиотеку для конвертации Markdown в HTML -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </body>
 </html>
